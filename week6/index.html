@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<!-- Students: Please use this week's project for Week 6: Assignment 6: Enhanced User Interfaces. 
+     You will need to replace the contents of this HTML file with your own work, 
+     and create any other files, if any, required for the assignment.
+     When you are done, be certain to submit the assignment in both Repl.it and Canvas to be graded. -->
+     <html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
+    <title>CS50C Week06</title>
+    
+<!-- jquery cdn -->
+    <script src="https://code.jquery.com/jquery-3.6.3.min.js" integrity="sha256-pvPw+upLPUjgMXY0G+8O0xUf+/Im1MZjXxxgOcBQBXU=" crossorigin="anonymous"></script>
+<!-- jquery UI cdn -->
+    <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.min.js" integrity="sha256-lSjKY0/srUM9BE3dPm+c4fBo1dky2v27Gdjm2uoZaL0=" crossorigin="anonymous"></script>
+    
+<!-- jquery CSS external link -->
+    <link href="https://code.jquery.com/ui/1.13.2/themes/start/jquery-ui.css" rel="stylesheet">
+  </head>
+  
+  <body>
+    <div>
+    <h1>Trivia Quiz</h1>
+    <h2 id="counter"></h2>
+     <div id="progressbar"></div>
+    <p id="question"></p>
+    <div id="answers"></div>
+    <div id="droppable" class="ui-widget-header" style="padding:50px;">
+  <p>Drop your answer here</p>
+</div>
+    <p id="correct" title="Basic dialog"></p>
+      <p id="incorrect" title="Basic dialog"></p>
+    <button id="nextQuestion">Skip Question</button>
+  <button id="newGame">New Game</button>
+  
+   
+    
+     <h2 id="score"></h2>
+    <script src="script.js"></script>
+      </div>
+  </body>
+</html>
