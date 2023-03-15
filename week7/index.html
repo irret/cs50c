@@ -1,1 +1,65 @@
+<!DOCTYPE html>
+<!-- Students: Please use this week's project for Week 7: Assignment 7: jQuery Plugin Promotional Site. 
+     You will need to replace the contents of this HTML file with your own work, 
+     and create any other files, if any, required for the assignment.
+     When you are done, be certain to submit the assignment in both Repl.it and Canvas to be graded. -->
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
+      <script>document.getElementsByTagName("html")[0].className += " js";</script>
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js" integrity="sha256-oP6HI9z1XaZNBrJURtCoUT5SUnxFr8s3BzRl+cbzUq8=" crossorigin="anonymous"></script>
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400|PT+Serif:400,400i,700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="revealing-hero-effect/main/assets/css/style.css">
+      <link rel="stylesheet" href="style.css">
+    <title>CS50C Week07</title>
+    
+  </head>
+  <body>
 
+
+    <section class="position-relative zindex-3 bg shadow-sm">
+    <!-- your content here -->
+    <div class="container max-width-sm height-100vh flex flex-center">
+      <div class="text-component text-center">
+              <h1><span id="hello" data-z data-z-layers="3" data-z-depth="0.5em">Hello</span><span data-z data-z-layers="20" data-z-depth="20px">😂</span>
+</h1>
+        <p class="text-md">👇 Scroll down</p>
+      </div>
+    </div>
+  </section>
+  
+  <section class="revealing-hero bg zindex-2 shadow-sm js-revealing-hero" data-theme="softBlue">
+    <!-- your content here -->
+    <div class="container max-width-sm padding-y-xxl">
+      <div class="text-component line-height-lg v-space-md">
+        <h2>Revealing Hero Effect with CSS & JavaScript</h2>
+                <p><a href="https://codyhouse.co/tutorials/revealing-hero-effect" class="btn btn--primary">Demo &amp; Download</a></p>
+    
+        <p class="text-md">👀 keep scrolling...</p>
+
+        <iframe height="1200" width="800" src="https://codyhouse.co/tutorials/revealing-hero-effect" title="description"></iframe>
+    
+      </div>
+    </div>
+  </section>
+
+  <section class="revealing-hero bg zindex-1 js-revealing-hero" data-theme="dark">
+    <!-- your content here -->
+    <div class="container max-width-sm padding-y-xxl">
+      <div class="text-component line-height-lg v-space-md">
+        <h2>Ztext </h2>
+        <p><a href="https://www.bestjquery.com/?JXhxER1m" class="btn btn--primary">Demo &amp; Download</a></p>
+
+              <iframe height="1200" width="800" src="https://www.bestjquery.com/?JXhxER1m" title="description"></iframe>
+      </div>
+    </div>
+  </section>
+     <script src="script.js"></script>
+<script src="revealing-hero-effect/main/assets/js/scripts.js"></script>
+   
+  <script src="https://code.jquery.com/jquery-3.6.3.min.js" integrity="sha256-pvPw+upLPUjgMXY0G+8O0xUf+/Im1MZjXxxgOcBQBXU=" crossorigin="anonymous"></script>
+    <script src="ztext.min.js"></script>
+    
+  </body>
+</html>

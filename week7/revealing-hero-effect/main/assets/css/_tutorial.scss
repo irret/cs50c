@@ -1,0 +1,25 @@
+// --------------------------------
+
+// Tutorial 👉 https://codyhouse.co/tutorials/revealing-hero-effect
+
+// --------------------------------
+
+.js {
+  .revealing-hero {
+    position: sticky; // bottom value will be set using JS
+    min-height: 100vh;
+    --reavealing-hero-overlay-opacity: 1; // overlay layer opacity - modified using JS
+
+    &::after { // overlay layer
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      height: 100%;
+      width: 100%;
+      pointer-events: none;
+      background-color: var(--color-black);
+      opacity: var(--reavealing-hero-overlay-opacity);
+    }
+  }
+}
