@@ -1,0 +1,42 @@
+[
+    {
+        "label": "Hiking",
+        "val": 328
+},
+    {
+        "label": "Pilates",
+        "val": 190
+},
+    {
+        "label": "Rock Climbing",
+        "val": 436
+},
+    {
+        "label": "Rollerblading",
+        "val": 411
+},
+    {
+        "label": "Walking",
+        "val": 153
+},
+    {
+        "label": "Bicycling",
+        "val": 219
+},
+    {
+        "label": "Gardening",
+        "val": 218
+},
+    {
+        "label": "Golfing",
+        "val": 235
+},
+    {
+        "label": "Kayaking",
+        "val": 272
+},
+    {
+        "label": "Running",
+        "val": 454
+}
+]

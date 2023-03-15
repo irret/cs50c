@@ -1,0 +1,60 @@
+[
+    {
+        "title": "Cancun",
+        "lat": 21.1213429,
+        "lng": -86.8492333,
+        "description": "Cancun"
+    },
+    {
+        "title": "San Miguel de Allende",
+        "lat": 20.9151299,
+        "lng": -100.7797222,
+        "description": "San Miguel de Allende"
+    }, {
+        "title": "Paris",
+        "lat": 48.859,
+        "lng": 2.206975,
+        "description": "Paris"
+    },
+    {
+        "title": "Amsterdam",
+        "lat": 52.3547362,
+        "lng": 4.6184377,
+        "description": "Amsterdam"
+    },
+    {
+        "title": "Santorini",
+        "lat": 36.4072716,
+        "lng": 25.3505902,
+        "description": "Santorini"
+    }, {
+        "title": "Venice",
+        "lat": 45.4046829,
+        "lng": 12.1015523,
+        "description": "Venice"
+    },
+    {
+        "title": "New York",
+        "lat": 40.6976701,
+        "lng": -74.2598743,
+        "description": "New York"
+    },
+    {
+        "title": "Maldives",
+        "lat": 3.1135242,
+        "lng": 68.7396862,
+        "description": "Maldives"
+    },
+    {
+        "title": "Bali",
+        "lat": -8.4517809,
+        "lng": 113.9500413,
+        "description": "Bali"
+    },
+    {
+        "title": "Prague",
+        "lat": 50.0597733,
+        "lng": 14.1854369,
+        "description": "Prague"
+    }
+]

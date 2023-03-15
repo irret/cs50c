@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Playing Cards</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+</head>
+
+<body>
+    <script>
+        var cardsArray = ["K", 9, "A", "Q", "J", 10, 2, 4, 6, 5, 7, 3, 8, "K", 7, "J", 6, 3, 7, 10];
+
+
+        cardsArray.sort(function(a, b) {
+
+
+            if (a == "A") {
+                a = 1;
+            }
+            if (b == "A") {
+                b = 1;
+            }
+            if (a == "J") {
+                a = 11;
+            }
+
+            if (b == "J") {
+                b = 11;
+            }
+            if (a == "Q") {
+                a = 12;
+            }
+            if (b == "Q") {
+                b = 12;
+            }
+            if (a == "K") {
+                a = 13;
+            }
+            if (b == "K") {
+                b = 13;
+            }
+            if (a <
+                b) {
+                return -1;
+            }
+            if (a > b) {
+                return 1;
+            }
+
+
+        });
+
+        for (var i = 0; i < cardsArray.length; i++) {
+            document.write(cardsArray[i]);
+            document.write("<br>");
+        }
+
+    </script>
+
+</body>
+
+</html>

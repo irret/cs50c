@@ -1,0 +1,64 @@
+[{
+        "title": "Card Sorting",
+        "description": "data is model with a deck of cards using array and object value structures",
+        "thumbnail": "assets/card_sort.JPG",
+        "date": "Sep 12 2018",
+        "url": "https://preview.c9users.io/teresagutierrez/cs50c-fa18/module03/cards.html?_c9_id=livepreview1&_c9_host=https://ide.c9.io"
+                    },
+    {
+        "title": "Events + Objects",
+        "description": "interactive card game using a playing card library provided via GitHub",
+        "thumbnail": "assets/card_game.JPG",
+        "date": "Sep 18 2018",
+        "url": "https://preview.c9users.io/teresagutierrez/cs50c-fa18/module04/JavaScript-Playing-Cards-master/cards.html?_c9_id=livepreview0&_c9_host=https://ide.c9.io"
+                    },
+    {
+        "title": "Quiz App",
+        "description": "Quiz application using jQuery Library",
+        "thumbnail": "assets/quiz.JPG",
+        "date": "Sep 26 2018",
+        "url": "https://preview.c9users.io/teresagutierrez/cs50c-fa18/module05/quiz.html?_c9_id=livepreview2&_c9_host=https://ide.c9.io"
+                    },
+    {
+        "title": "Enhanced User Interfaces",
+        "description": "Enhanced quiz app using jQyery UI",
+        "thumbnail": "assets/advanced_quiz.JPG",
+        "date": "Oct 2 2018",
+        "url": "https://preview.c9users.io/teresagutierrez/cs50c-fa18/module06/jqueryquiz.html?_c9_id=livepreview3&_c9_host=https://ide.c9.io"
+                    },
+    {
+        "title": "jQuery Plugin Promotional Site",
+        "description": "interactive web page that promotes 2 jQuery plug-ins",
+        "thumbnail": "assets/plugins.JPG",
+        "date": "Oct 9 2018",
+        "url": "https://preview.c9users.io/teresagutierrez/cs50c-fa18/module07/index.html?_c9_id=livepreview0&_c9_host=https://ide.c9.io"
+                    },
+    {
+        "title": "Class Map",
+        "description": "Google Maps API",
+        "thumbnail": "assets/map.JPG",
+        "date": "Oct 17 2018",
+        "url": "https://preview.c9users.io/teresagutierrez/cs50c-fa18/module08/googlemap.html?_c9_id=livepreview2&_c9_host=https://ide.c9.io"
+                    },
+    {
+        "title": "Map-Based Mobile App",
+        "description": "Google Maps API using external JSON file",
+        "thumbnail": "assets/map_app.JPG",
+        "date": "Oct 24 2018",
+        "url": "https://preview.c9users.io/teresagutierrez/cs50c-fa18/module09/googlemap.html?_c9_id=livepreview1&_c9_host=https://ide.c9.io"
+                    },
+    {
+        "title": "Basic Data Visualization",
+        "description": " data visualization that incorporates a HTML5 canvas element and geometric shapes",
+        "thumbnail": "assets/basic_graph.JPG",
+        "date": "Nov 6 2018",
+        "url": "https://preview.c9users.io/teresagutierrez/cs50c-fa18/module10/pie.html"
+                    },
+    {
+        "title": "Advanced Visualization",
+        "description": "data visualization using the D3 library",
+        "thumbnail": "assets/advanced_graph.JPG",
+        "date": "Nov 20 2018",
+        "url": "https://preview.c9users.io/teresagutierrez/cs50c-fa18/module11/svg.html?_c9_id=livepreview3&_c9_host=https://ide.c9.io"
+                    }
+                ]

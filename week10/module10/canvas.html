@@ -1,0 +1,140 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>Canvas</title>
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css">
+
+    <!-- jquery -->
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+
+    <style>
+
+
+    </style>
+</head>
+
+<body onload="loadJSON();">
+    <canvas id="chart1" width="500" height="500">
+    </canvas>
+    <canvas id="chart2" width="500" height="500">
+    </canvas>
+    <canvas id="c1" width="500" height="500">
+    </canvas>
+
+    <script>
+        //reference to vanvas element
+        var canvas1 = document.getElementById('c1');
+
+        //2 dimentional drawing context open in canvas
+        var drawing = canvas1.getContext('2d');
+
+        //line specs
+        drawing.moveTo(0, 0);
+        drawing.lineTo(200, 100);
+        drawing.lineWidth = 2;
+        drawing.strokeStyle = "blue";
+        //draws line
+        drawing.stroke();
+
+
+
+        //rectangle
+        drawing.fillStyle = "blue";
+        drawing.fillRect(10, 125, 250, 100);
+        //rectangle border
+        drawing.lineWidth = 20;
+        drawing.strokeStyle = "red";
+        drawing.strokeRect(10, 125, 250, 100);
+
+
+        //text
+        drawing.font = "40px Arial";
+        drawing.textAlign = "center";
+        drawing.textBaseline = "top";
+        drawing.fillStyle = "orange";
+        drawing.fillText("hi", 50, 150);
+
+        //arc
+        drawing.fillStyle = "yellow";
+        drawing.beginPath();
+        drawing.arc(200, 300, 50, 0, 1 * Math.PI, true);
+        drawing.fill();
+        drawing.closePath();
+
+        //circle
+        drawing.fillStyle = "purple";
+        drawing.beginPath();
+        drawing.arc(400, 300, 50, 0, 2 * Math.PI, true);
+        drawing.fill();
+        drawing.closePath();
+
+        //1. load json
+        function loadJSON() {
+            //load jquery's getJSON
+            $.getJSON("data.json",
+                function(dataReturned) {
+                    doBar(dataReturned);
+                }
+            );
+        }
+
+        //2. render bar chart
+        function doBar(data) {
+            var canvas1 = document.getElementById('chart1');
+            var context1 = canvas1.getContext('2d');
+
+            var startX = canvas1.width;
+            var bottomY = canvas1.height;
+            var maxVal = getMax(data);
+            var scaleY = bottomY / maxVal;
+            var scaleX = startX / (data.length);
+            var i, height, lastX = 0;
+
+            // loop thru and draw axis scale lines
+            for (i = 0; i <= maxVal; i = i + maxVal / 10) {
+                context1.beginPath();
+                context1.moveTo(0, i * scaleY);
+                context1.strokeStyle = "red";
+                context1.stroke();
+
+                context1.fillStyle = "black";
+                context1.font = "bold 24px Arial";
+                context1.fillText(maxVal - i, 0, (i * scaleY) - 2);
+
+            }
+
+            //loop thru each dara element and draw rectangles for each
+            for (var i = 0; i < data.length; i++) {
+                context1.fillStyle = data[i].color;
+                context1.globalAlpha = 0.7;
+                height = data[i].val * scaleY;
+                context1.fillRect(lastX, bottomY - height, scaleX, height);
+                lastX += scaleX;
+            }
+        }
+
+        //3. loop trough data to find max, value is returned
+        function getMax(data) {
+            var max = 0;
+            for (var i = 0; i < data.length; i++) {
+                if (data[i].val > max) {
+                    max = data[i].val;
+                }
+            }
+            return max;
+        }
+
+
+
+
+    </script>
+
+</body>
+
+</html>

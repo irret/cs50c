@@ -1,0 +1,56 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Angular JS</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.7.5/angular.min.js"></script>
+
+    <style>
+
+
+    </style>
+</head>
+
+<body>
+
+    <div data-ng-app="myApp" data-ng-controller="myCtrl">
+        <h1>CS50C Assigments:</h1>
+        <p>Search:</p>
+
+        <p><input type="text" data-ng-model="input"></p>
+        <ul>
+            <li data-ng-repeat="x in assignments | filter:input">
+                <a href="{{x.url}}" target="_blank">
+                    <h2>{{x.title}}</h2>
+                </a>
+
+                <ul>
+                    <a target="_blank" href="{{x.thumbnail}}"><img src="{{x.thumbnail}}" width="150"></a>
+                    <li>Description: {{x.description}}</li>
+                    <li>{{x.date}}</li>
+
+                </ul>
+            </li>
+        </ul>
+    </div>
+
+    <script>
+        //associate js variable with the html div
+        var app = angular.module('myApp', []);
+
+        //attach javascript function to the angular app defined in div
+        app.controller('myCtrl',
+            function($scope, $http) {
+                $http.get('data.json')
+                    .then(function(response) {
+                        $scope.assignments = response.data;
+                    });
+            });
+
+    </script>
+
+</body>
+
+</html>

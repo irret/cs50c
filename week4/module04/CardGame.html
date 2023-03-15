@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<!-- saved from url=(0112)https://preview.c9users.io/johnmyers/cs50c-fa18-johnmyers/module04/JavaScript-Playing-Cards-master/cardgame.html -->
+<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>Card Game</title>
+
+<link rel="stylesheet" href="./CardGame_files/playingCards.ui.css">
+<link rel="stylesheet" href="./CardGame_files/style.css">
+<script src="./CardGame_files/playingCards.js.download"></script><style>@media print {#ghostery-purple-box {display:none !important}}</style>
+<script src="./CardGame_files/playingCards.ui.js.download"></script>
+</head>
+<body>
+    <p id="wholescore">Your Score: <span id="score">12</span></p>
+    <p id="computerCards" style="clear:both;"><div class="playingCard" id="turnedCard">&nbsp;</div><div class="playingCard"><div class="front red"><div class="corner">2<br>♥</div><div class="suit B1">♥</div><div class="suit B5 flip">♥</div><div class="corner cornerBR flip">2<br>♥</div></div></div></p>
+    <p id="playerCards" style="clear:both;"><div class="playingCard"><div class="front "><div class="corner">2<br>♣</div><div class="suit B1">♣</div><div class="suit B5 flip">♣</div><div class="corner cornerBR flip">2<br>♣</div></div></div><div class="playingCard"><div class="front red"><div class="corner">7<br>♥</div><div class="suit A1">♥</div><div class="suit A5 flip">♥</div><div class="suit C1">♥</div><div class="suit C5 flip">♥</div><div class="suit A3">♥</div><div class="suit C3">♥</div><div class="suit B2">♥</div><div class="corner cornerBR flip">7<br>♥</div></div></div></p>
+    <p><button id="hit">Hit</button>
+        <button id="stand">Stand</button>
+        <br><button id="newGame" class="hide">Play Again</button>
+    </p>
+<script>
+    // Variables declared first so all functions will have access to them
+    var compCards; // An array of the computer's cards
+    var playerCards; // An array of the player's cards
+    var compCardTable; // The HTML element to display the computer's cards
+    var playerCardTable; // The HTML element to display the player's cards
+    var deck; // The full deck of cards; an object of type playingCards
+    var playerScore = 0; // player's score
+    var computerScore = 0; // computer's score
+    var playerAces = 0; // The number of aces the player has which count as 11 points
+    var computerAces = 0; // The number of aces the computer has which count as 11 points
+    var computerStand = false; // If true, it indicates that the computer has decided to stand with the cards it has.
+    var gameOver = false; // If true, the game has ended.
+    function newGame() { // Begins a new game
+        /* global playingCards */
+        gameOver = false; // Reset variables for a new game
+        computerStand = false;
+        playerScore = 0;
+        computerScore = 0;
+        playerAces = 0;
+        computerAces = 0;
+        deck = new playingCards();
+        compCards = [draw(deck),draw(deck)];
+        playerCards = [draw(deck),draw(deck)];
+        playerScore = cardValue(playerCards[0]) + cardValue(playerCards[1]);
+        computerScore = cardValue(compCards[0]) + cardValue(compCards[1]);
+        if(compCards[0].rank === "A" || compCards[1].rank === "A") computerAces = 1;
+        if(playerCards[0].rank === "A" || playerCards[1].rank === "A") playerAces = 1;
+        if(compCards[0].rank === "A" || compCards[1].rank === "A") playerScore = 12; // If both cards are aces, one will score 11 and the other will score 1.
+        if(playerCards[0].rank === "A" || playerCards[1].rank === "A") playerScore = 12; // If both scored 11, the total would be 22, which is a bust.
+        compCardTable = document.getElementById("computerCards");
+        playerCardTable = document.getElementById("playerCards");
+        var scoreboard = document.getElementById("wholescore");
+        scoreboard.innerHTML = "Your Score: <span id=\"score\">0</span>";
+        compCardTable.innerHTML = "<div class=\"playingCard\" id=\"turnedCard\">&nbsp;</div>"+compCards[1].getHTML();
+        playerCardTable.innerHTML = playerCards[0].getHTML()+playerCards[1].getHTML();
+        var newGameButton = document.getElementById("newGame");
+        newGameButton.classList.add("hide");
+        updateScore();
+        checkScore();
+    }
+    function draw(d) { // Draws a card from the deck and discards jokers
+        // d = the deck; it returns the card drawn (which is not a joker)
+        var theCard = d.draw();
+        while(theCard.rank === "N") {
+            theCard = d.draw();
+        }
+        return theCard;
+    }
+    function cardValue(c) { // Returns the number of points of the given card.
+        // c = a card object
+        if(c.rank === "A") { // ace
+            return 11;
+        }
+        else if(c.rank > "9") { // face cards
+            return 10;
+        }
+        else {
+            return parseInt(c.rank); // numeric rank
+        }
+    }
+    function updateScore() { // Updates the player's score on the HTML document
+        var scoreboard = document.getElementById("score");
+        scoreboard.innerHTML = playerScore;
+    }
+    function checkScore() { // Checks if either the computer or player has reached 21 or has busted
+        var scoreboard = document.getElementById("wholescore");
+        if(playerScore > 21) {
+            scoreboard.innerHTML += "<br/>Computer score: "+computerScore+"<br/>You busted<br/>You lose";
+            endGame();
+        }
+        if(computerScore > 21) {
+            scoreboard.innerHTML += "<br/>Computer score: "+computerScore+"<br/>Computer busted<br/>You win";
+            endGame();
+        }
+        if(playerScore === 21 && computerScore != 21) {
+            scoreboard.innerHTML += "<br/>Computer score: "+computerScore+"<br/>You scored 21<br/>You win";
+            endGame();
+        }
+        if(computerScore === 21 && playerScore != 21) {
+            scoreboard.innerHTML += "<br/>Computer score: "+computerScore+"<br/>Computer scored 21<br/>You lose";
+            endGame();
+        }
+        if(computerScore === 21 && playerScore === 21) {
+            scoreboard.innerHTML += "<br/>Computer score: "+computerScore+"<br/>You and the computer scored 21<br/>Tie game";
+            endGame();
+        }
+    }
+    function hit() { // Draws a new card for the player, when the player decides to hit
+        // This function is associated with the event listener for the "Hit" button.
+        if(!gameOver) { // The if-statement is so the "Hit" button will not function if the game is over.
+            var newCard = draw(deck);
+            playerCards.push(newCard);
+            playerCardTable.innerHTML += newCard.getHTML();
+            playerScore += cardValue(newCard);
+            if(newCard.rank === "A") {
+                playerAces++;
+            }
+            if(playerScore > 21 && playerAces > 0) { // If the score is over 21, but has an ace that count as 11, it changes the ace to count as 1
+                playerScore -= 10;
+                playerAces--;
+            }
+            updateScore();
+            checkScore();
+            computerTurn();
+        }
+    }
+    function stand() { // Called when the player stops drawing cards
+        // This function is associated with the event listener for the "Stand" button.
+        if(!gameOver) { // So the "Stand" button will not function if the game is over.
+            while(!computerStand && !gameOver) { // If the player stands, the computer will keep playing until it stands (if hasn't already stood)
+                computerTurn();
+            } // The program will only get to this point once the player and computer have both stood.
+            if(!gameOver) { // Although if(!gameOver) was already tested in this scope, gameOver could have been set to true in the above while-loop, if the computer busted or scored 21.
+                // The program gets here if both player and computer have stood but neither busted nor scored 21,
+                // which means it is time to compare the scores to see who wins.
+                var scoreboard = document.getElementById("wholescore");
+                if(playerScore > computerScore) {
+                    scoreboard.innerHTML += "<br/>Computer score: "+computerScore+"<br/>You win";
+                }
+                else if(playerScore < computerScore) {
+                    scoreboard.innerHTML += "<br/>Computer score: "+computerScore+"<br/>You lose";
+                }
+                else if(playerScore === computerScore) {
+                    scoreboard.innerHTML += "<br/>Computer score: "+computerScore+"<br/>Tie game";
+                }
+                endGame();
+            }
+        }
+    }
+    function playerVisibleScore() { // Adds up the numeric value of the player's cards except the first card, and returns the sum.
+        // This function is used by the computer to decide whether to hit or stand.
+        // The player's first card is face down to the simulated computer player which is why it is not included in the total.
+        var total = 0;
+        var countAces = 0;
+        for(var i=1; i<playerCards.length; i++) {
+            total += cardValue(playerCards[i]);
+            if(playerCards[i].rank === "A") {
+                countAces++;
+            }
+        }
+        while(countAces > 0 && total >= 21) {
+            total -= 10;
+            countAces--;
+        }
+        return total;
+    }
+    function computerTurn() { // This function is called when it is the computer's turn to play.
+        if(!computerStand && !gameOver) {
+            if(computerScore < 17 || (computerAces > 0 && computerScore < 19) || playerVisibleScore()+4 > computerScore) { // If this condition is met, the computer decides to hit.
+                var newCard = draw(deck);
+                compCards.push(newCard);
+                compCardTable.innerHTML += newCard.getHTML();
+                computerScore += cardValue(newCard);
+                if(newCard.rank === "A") {
+                    computerAces++;
+                }
+                if(computerScore > 21 && computerAces > 0) { // If an ace counts as 11 and the score goes over 21, the ace counts as 1.
+                    computerScore -= 10;
+                    computerAces--;
+                }
+            }
+            else {
+                computerStand = true;
+            }
+            checkScore();
+        }
+    }
+    function endGame() { // This function is called when the game has ended.
+        // It sets the gameOver flag, shows the player the computer's face down card, and shows the "Play Again" button.
+        gameOver = true;
+        var turnedCard = document.getElementById("turnedCard");
+        turnedCard.innerHTML = compCards[0].getHTML(); // Show the computer's face down card
+        var newGameButton = document.getElementById("newGame");
+        newGameButton.classList.remove("hide");
+    }
+    var hitButton = document.getElementById("hit");
+    var standButton = document.getElementById("stand");
+    hitButton.addEventListener("click",hit);
+    standButton.addEventListener("click",stand);
+    var newGameButton = document.getElementById("newGame");
+    newGameButton.addEventListener("click",newGame);
+    newGame();
+</script>
+
+<div style="background-color: rgb(255, 143, 0); display: none; color: white; text-align: center; position: fixed; top: 0px; left: 0px; width: 100%; height: auto; min-width: 100%; min-height: auto; max-width: 100%; font: 12px &quot;Helvetica Neue&quot;, Helvetica, Arial, Geneva, sans-serif; cursor: pointer; padding: 5px;"><span style="color: white; font: 12px &quot;Helvetica Neue&quot;, Helvetica, Arial, Geneva, sans-serif;">You have turned off the paragraph player. You can turn it on again from the options page.</span><img src="chrome-extension://gfjopfpjmkcfgjpogepmdjmcnihfpokn/img/icons/icon-close_16.png" style="width: 20px; height: auto; min-width: 20px; min-height: auto; max-width: 20px; float: right; margin-right: 10px;"></div></body></html>

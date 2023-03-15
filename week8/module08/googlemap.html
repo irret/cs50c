@@ -1,0 +1,41 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>Google Maps API</title>
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css">
+    <style>
+        #mymap,
+        #mymap2 {
+            height: 500px;
+        }
+
+    </style>
+    <script src="myjavascript.js"></script>
+</head>
+
+<body>
+    <h1 class="text-center py-4 font-weight-light">Google Maps API
+    </h1>
+    <h3 class="text-center py-4 font-weight-light">Fixed Geocoords
+    </h3>
+    <div id="mymap" class="container" style="text-align: center">
+
+    </div>
+    <h3 class="text-center py-4 font-weight-light">Browser Geocoords
+    </h3>
+
+    <div id="mymap2" class="container" style="text-align: center">
+
+    </div>
+
+
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA6BnckKE8GG3O6MTxDlDiDIsNukhcmOHE&callback=initMap" async defer></script>
+</body>
+
+</html>

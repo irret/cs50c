@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>jQuery UI</title>
+    <!-- include meta viewport element -->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- jQyery JS file -->
+    <script src="external/jquery/jquery.js"></script>
+    <!-- jQuery UI JS file-->
+    <script src="jquery-ui.min.js"></script>
+    <!--jQuery UI Default CSS file -->
+    <link rel="stylesheet" href="jquery-ui.min.css">
+
+    <style>
+
+
+    </style>
+</head>
+
+<body>
+    <a href="http://jqueryui.com/">jQuery UI</a>
+
+    <div id="myaccord">
+
+        <h3>Panel 1</h3>
+        <div> Panel 1 contents</div>
+        <h3>Panel 2</h3>
+        <div> Panel 2 contents</div>
+    </div>
+
+    <div id="dialog" title="Basic dialog">
+        <h2>Dialog Title</h2>
+        <p>This is the default dialog which is useful for displaying information. The dialog window can be moved, resized and closed with the 'x' icon.</p>
+    </div>
+
+    <div id="mydrag" style="cursor: grab">
+
+        <h3>Dag Me!</h3>
+
+    </div>
+
+    <div id="drop">
+
+        <h3>Drop it like it's hot</h3>
+
+    </div>
+
+    <div id="myprogress"></div>
+    <button type="button" id="mybutton">Click Me</button>
+
+    <script>
+        $('#myaccord').accordion();
+        $('#dialog').dialog();
+
+        $('#myprogress').progressbar(
+            //progressbar object value property
+            {
+                value: 56,
+                max: 100
+            }
+        );
+
+        //increase progressbar value on mybutton click
+        $('#mybutton').click(
+            //anonymous function
+            function() {
+
+                $('#myprogress').progressbar('value', 90);
+            }
+
+        );
+
+        $('#mydrag').draggable();
+        $('#drop').droppable(
+
+            {
+                drop: function() {
+                    //change css property background on drop
+                    $('#drop').css('background-color', 'blue');
+                    alert("You dropped it like its hot!");
+                }
+            }
+
+        );
+
+    </script>
+</body>
+
+</html>
